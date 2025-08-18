@@ -64,37 +64,38 @@ ajaxCall Method
     xhttp.open(method, url, syncFlag);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhttp.send(data);
-}
+	}
 
+Update Form Common.jsp Code
 
-<c:if test="${process eq 'loadUpdateForm'}">
-    <form method="post" onsubmit="return updateAccountData()" class="space-y-4">
-        <!-- ID -->
-        <div>
-            <label for="id" class="block text-sm font-medium text-gray-700">ID</label>
-            <input type="number" readonly name="id" id="id" value="${formData.id}" class="${inputClass}" />
-        </div>
-
-        <!-- Name -->
-        <div>
-            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-            <input type="text" name="name" id="name" value="${formData.name}" class="${inputClass}" />
-        </div>
-
-        <!-- Balance -->
-        <div>
-            <label for="balance" class="block text-sm font-medium text-gray-700">Balance</label>
-            <input type="number" step="0.01" name="balance" id="balance" value="${formData.balance}" class="${inputClass}" />
-        </div>
-
-        <!-- Submit -->
-        <div class="pt-4">
-            <button type="submit" class="${submitButtonClass}">
-                Update Account
-            </button>
-        </div>
-    </form>
-</c:if>
+	<c:if test="${process eq 'loadUpdateForm'}">
+	    <form method="post" onsubmit="return updateAccountData()" class="space-y-4">
+	        <!-- ID -->
+	        <div>
+	            <label for="id" class="block text-sm font-medium text-gray-700">ID</label>
+	            <input type="number" readonly name="id" id="id" value="${formData.id}" class="${inputClass}" />
+	        </div>
+	
+	        <!-- Name -->
+	        <div>
+	            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+	            <input type="text" name="name" id="name" value="${formData.name}" class="${inputClass}" />
+	        </div>
+	
+	        <!-- Balance -->
+	        <div>
+	            <label for="balance" class="block text-sm font-medium text-gray-700">Balance</label>
+	            <input type="number" step="0.01" name="balance" id="balance" value="${formData.balance}" class="${inputClass}" />
+	        </div>
+	
+	        <!-- Submit -->
+	        <div class="pt-4">
+	            <button type="submit" class="${submitButtonClass}">
+	                Update Account
+	            </button>
+	        </div>
+	    </form>
+	</c:if>
 
 
 
@@ -147,3 +148,4 @@ Validate_empty Function
     }
     return true;
 }
+
