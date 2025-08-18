@@ -1,0 +1,110 @@
+<h1>Source Code</h1>
+
+<h2>Index.jsp</h2>
+<pre><code>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+		<title>Scooby</title>
+	</head>
+
+	<body class="bg-gray-100">
+		<!-- Navbar -->
+		<div class="fixed top-0 left-0 w-full h-20 bg-violet-600 text-white shadow-lg z-50">
+			<div class="max-w-6xl mx-auto h-full flex justify-between items-center px-6">
+				<!-- Brand Name -->
+				<h1 class="text-2xl font-bold tracking-wide">Scooby</h1>
+
+				<!-- Navigation Buttons -->
+				<div class="flex gap-6">
+					<button 
+						class="bg-white text-violet-600 px-5 py-2 rounded-lg font-medium hover:bg-violet-100 transition">
+						Form
+					</button>
+					<button 
+						class="bg-yellow-400 text-black px-5 py-2 rounded-lg font-medium hover:bg-yellow-300 transition">
+						Show
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Content -->
+		<div class="pt-24 px-6">
+			<div id="load" class="p-6"></div>
+		</div>
+	</body>
+</html>
+</code></pre>
+
+<h2>Tailwind CSS Variables</h2>
+<pre><code>
+<c:set var="tableHeaderClass" value="px-6 py-3 text-left text-sm font-semibold text-gray-700 border-b" />
+<c:set var="tableCellClass" value="px-6 py-3 border-b text-gray-800" />
+<c:set var="actionButtonClass" value="text-white px-3 py-1 rounded-md text-sm" />
+<c:set var="inputClass" value="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-violet-500 focus:ring-violet-500 sm:text-sm" />
+<c:set var="submitButtonClass" value="w-full bg-violet-600 hover:bg-violet-700 text-white font-semibold py-2 px-4 rounded-md transition" />
+<c:set var="successAlertClass" value="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" />
+<c:set var="errorAlertClass" value="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" />
+</code></pre>
+
+<h2>ajaxCall Method</h2>
+<pre><code>
+function ajaxCall(url, method, destination, data, syncFlag) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById(destination).innerHTML = this.responseText;
+        }
+    };
+    xhttp.open(method, url, syncFlag);
+    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhttp.send(data);
+}
+</code></pre>
+
+<h2>Update Form (JSP)</h2>
+<pre><code>
+<c:if test="${process eq 'loadUpdateForm'}">
+    <form method="post" onsubmit="return updateAccountData()" class="space-y-4">
+        <!-- ID -->
+        <div>
+            <label for="id" class="block text-sm font-medium text-gray-700">ID</label>
+            <input type="number" readonly name="id" id="id" value="${formData.id}" class="${inputClass}" />
+        </div>
+
+        <!-- Name -->
+        <div>
+            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+            <input type="text" name="name" id="name" value="${formData.name}" class="${inputClass}" />
+        </div>
+
+        <!-- Balance -->
+        <div>
+            <label for="balance" class="block text-sm font-medium text-gray-700">Balance</label>
+            <input type="number" step="0.01" name="balance" id="balance" value="${formData.balance}" class="${inputClass}" />
+        </div>
+
+        <!-- Submit -->
+        <div class="pt-4">
+            <button type="submit" class="${submitButtonClass}">
+                Update Account
+            </button>
+        </div>
+    </form>
+</c:if>
+</code></pre>
+
+<h2>Validate_empty Function</h2>
+<pre><code>
+function validate_empty(field,msg) {
+    var value = document.getElementById(field).value.trim(); // get string value directly
+    if (value === "") {
+        alert(msg);
+        document.getElementById(field).focus();
+        return false;
+    }
+    return true;
+}
+</code></pre>
